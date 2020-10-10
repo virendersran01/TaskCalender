@@ -78,7 +78,7 @@
         android:layout_marginEnd="24dp"
         app:cardBackgroundColor="@color/colorWhite"
         app:cardCornerRadius="4dp"
-        app:strokeColor="#1967d2"
+        app:strokeColor="@color/colorAccent"
         app:strokeWidth="1.3dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -105,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:text="Continue with Google Account"
-                android:textColor="#1967d2"
+                android:textColor="@color/colorAccent"
                 android:textSize="16sp" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
