@@ -1,8 +1,10 @@
-package com.virtualstudios.taskcalender;
+package com.virtualstudios.taskcalender.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.virtualstudios.taskcalender.R;
 
 public class MainActivity extends AppCompatActivity {
 
