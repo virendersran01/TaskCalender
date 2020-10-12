@@ -17,7 +17,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/colorAccent" />
+        app:tint="@color/colorAccent"
+        android:contentDescription="@string/app_name" />
 
     <View
         android:id="@+id/viewSupporter"
