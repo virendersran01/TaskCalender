@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -16,19 +17,25 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.virtualstudios.taskcalender.R;
 import com.virtualstudios.taskcalender.databinding.ActivityLoginBinding;
+import com.virtualstudios.taskcalender.utilities.PreferenceManager;
 
 public class LoginActivity extends AppCompatActivity {
 
     private ActivityLoginBinding binding;
     private GoogleSignInClient mGoogleSignInClient;
     private final int RC_SIGN_IN = 0;
+    private PreferenceManager preferenceManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        preferenceManager = new PreferenceManager(getApplicationContext());
+        if (preferenceManager.getLoginStatus()){
+            startActivity(new Intent(this, MainActivity.class));
+        }
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        startActivity(new Intent(this, MainActivity.class));
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -43,20 +50,15 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        if (account != null) {
-            String personName = account.getDisplayName();
-            String personGivenName = account.getGivenName();
-            String personFamilyName = account.getFamilyName();
-            String personEmail = account.getEmail();
-            String personId = account.getId();
-            Uri personPhoto = account.getPhotoUrl();
-            Log.d("TAG", "onStart: name : "+personName + personFamilyName+
-                    ", given name : "+personGivenName+
-                    ", email : "+ personEmail +
-                    ", person id : "+personId +
-                    ", pic : "+ personPhoto.toString());
-        }
+//        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+//        if (account != null) {
+//            String personName = account.getDisplayName();
+//            String personGivenName = account.getGivenName();
+//            String personFamilyName = account.getFamilyName();
+//            String personEmail = account.getEmail();
+//            String personId = account.getId();
+//            Uri personPhoto = account.getPhotoUrl();
+//        }
 
     }
 
@@ -91,16 +93,19 @@ public class LoginActivity extends AppCompatActivity {
                 String personId = account.getId();
                 Uri personPhoto = account.getPhotoUrl();
 
-                Log.d("TAG", "onStart: name : "+personName + personFamilyName+
-                        ", given name : "+personGivenName+
-                        ", email : "+ personEmail +
-                        ", person id : "+personId +
-                        ", pic : "+ personPhoto.toString());
+                preferenceManager.setLoginStatus(true);
+                preferenceManager.setUserId(personId);
+                preferenceManager.setUserFullName(personGivenName);
+                preferenceManager.setUserEmail(personEmail);
+                preferenceManager.setProfilePicUrl(personPhoto.toString());
+
+                startActivity(new Intent(this, MainActivity.class));
             }
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w("TAG", "signInResult:failed code=" + e.getStatusCode());
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             //updateUI(null);
         }
     }
