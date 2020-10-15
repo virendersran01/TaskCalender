@@ -35,7 +35,6 @@ public class LoginActivity extends AppCompatActivity {
         }
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        startActivity(new Intent(this, MainActivity.class));
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -95,11 +94,12 @@ public class LoginActivity extends AppCompatActivity {
 
                 preferenceManager.setLoginStatus(true);
                 preferenceManager.setUserId(personId);
-                preferenceManager.setUserFullName(personGivenName);
+                preferenceManager.setUserFullName(personName);
                 preferenceManager.setUserEmail(personEmail);
                 preferenceManager.setProfilePicUrl(personPhoto.toString());
 
                 startActivity(new Intent(this, MainActivity.class));
+                finish();
             }
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
