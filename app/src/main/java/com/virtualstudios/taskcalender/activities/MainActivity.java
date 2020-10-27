@@ -1,14 +1,17 @@
 package com.virtualstudios.taskcalender.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.squareup.picasso.Picasso;
 import com.virtualstudios.taskcalender.R;
@@ -45,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void initBottomSheetStart(){
+    private void initBottomSheetStart() {
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(context);
         LayoutBottomSheetStartBinding binding = LayoutBottomSheetStartBinding.inflate(getLayoutInflater());
 //        View view = LayoutInflater.from(context).inflate(R.layout.layout_bottom_sheet_start, null);
@@ -54,5 +57,19 @@ public class MainActivity extends AppCompatActivity {
         binding.textUserName.setText(preferenceManager.getUserFullName());
         binding.textUserEmail.setText(preferenceManager.getUserEmail());
         bottomSheetDialog.show();
+
+        BottomSheetBehavior bottomSheetBehavior = bottomSheetDialog.getBehavior();
+
+        bottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                Log.d("TAG", "onStateChanged: "+newState);
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+                Log.d("TAG", "onSlide: "+slideOffset);
+            }
+        });
     }
 }
