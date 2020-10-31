@@ -42,7 +42,9 @@ public class LoginActivity extends AppCompatActivity {
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         binding.buttonGoogle.setOnClickListener(v -> {
-            signIn();
+//            signIn();
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
         });
     }
 
