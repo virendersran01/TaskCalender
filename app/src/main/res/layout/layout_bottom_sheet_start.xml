@@ -9,24 +9,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <View
-            android:id="@+id/viewIndicator"
-            android:layout_width="32dp"
-            android:layout_height="4dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/rounded_rectangle"
+
+        <ImageView
+            android:id="@+id/imageClose"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_close"
+            app:tint="@color/colorBlack"
+            android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/imageUser"
+            android:contentDescription="@string/app_name" />
+
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/imageUser"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/viewIndicator"
+            app:layout_constraintTop_toTopOf="parent"
             app:riv_border_color="@color/colorBlack"
             app:riv_oval="true" />
 
@@ -93,10 +96,11 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginBottom="8dp"
-            android:background="@android:drawable/divider_horizontal_dark"
+            android:background="@color/colorDivider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textCreateNewList" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView

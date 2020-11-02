@@ -18,6 +18,7 @@ import com.squareup.picasso.Picasso;
 import com.virtualstudios.taskcalender.R;
 import com.virtualstudios.taskcalender.adapters.AdapterTasks;
 import com.virtualstudios.taskcalender.databinding.ActivityMainBinding;
+import com.virtualstudios.taskcalender.databinding.LayoutBottomSheetEndBinding;
 import com.virtualstudios.taskcalender.databinding.LayoutBottomSheetStartBinding;
 import com.virtualstudios.taskcalender.utilities.PreferenceManager;
 
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private Context context;
     private PreferenceManager preferenceManager;
     private List<String> tasks;
+    private BottomSheetDialog bottomSheetDialogStart, bottomSheetDialogEnd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +62,14 @@ public class MainActivity extends AppCompatActivity {
         tasks.add("Task 19");
         tasks.add("Task 20");
 
+        initBottomSheetStart();
+        initBottomSheetEnd();
         activityMainBinding.bottomAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
+                if (item.getItemId() == R.id.itemOptions){
+                    bottomSheetDialogEnd.show();
+                }
                 return false;
             }
         });
@@ -70,22 +77,26 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding.bottomAppBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                initBottomSheetStart();
+                bottomSheetDialogStart.show();
+
             }
         });
     }
 
     private void initBottomSheetStart() {
-        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(context);
+        bottomSheetDialogStart = new BottomSheetDialog(context);
         LayoutBottomSheetStartBinding binding = LayoutBottomSheetStartBinding.inflate(getLayoutInflater());
-        bottomSheetDialog.setContentView(binding.getRoot());
-//        Picasso.get().load(preferenceManager.getProfilePicUrl()).into(binding.imageUser);
-//        binding.textUserName.setText(preferenceManager.getUserFullName());
-//        binding.textUserEmail.setText(preferenceManager.getUserEmail());
+        bottomSheetDialogStart.setContentView(binding.getRoot());
+        Picasso.get().load(preferenceManager.getProfilePicUrl()).into(binding.imageUser);
+        binding.textUserName.setText(preferenceManager.getUserFullName());
+        binding.textUserEmail.setText(preferenceManager.getUserEmail());
+        binding.imageUser.setImageResource(R.drawable.ic_google_logo);
+        binding.textUserName.setText("Android");
+        binding.textUserEmail.setText("android@google.com");
         binding.recyclerViewTasks.setAdapter(new AdapterTasks(tasks));
-        bottomSheetDialog.show();
+        binding.imageClose.setOnClickListener(v -> bottomSheetDialogStart.dismiss());
 
-        BottomSheetBehavior bottomSheetBehavior = bottomSheetDialog.getBehavior();
+        BottomSheetBehavior bottomSheetBehavior = bottomSheetDialogStart.getBehavior();
         bottomSheetBehavior.setPeekHeight(Resources.getSystem().getDisplayMetrics().heightPixels);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
 
@@ -101,4 +112,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void initBottomSheetEnd() {
+        bottomSheetDialogEnd = new BottomSheetDialog(context);
+        LayoutBottomSheetEndBinding binding = LayoutBottomSheetEndBinding.inflate(getLayoutInflater());
+        bottomSheetDialogEnd.setContentView(binding.getRoot());
+
+        BottomSheetBehavior bottomSheetBehavior = bottomSheetDialogEnd.getBehavior();
+
+        bottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                Log.d("TAG", "onStateChanged: "+newState);
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+                Log.d("TAG", "onSlide: "+slideOffset);
+            }
+        });
+    }
+
 }
