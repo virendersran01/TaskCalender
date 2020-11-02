@@ -19,6 +19,7 @@ import com.squareup.picasso.Picasso;
 import com.virtualstudios.taskcalender.R;
 import com.virtualstudios.taskcalender.adapters.AdapterTasks;
 import com.virtualstudios.taskcalender.databinding.ActivityMainBinding;
+import com.virtualstudios.taskcalender.databinding.LayoutBottomSheetAddTaskBinding;
 import com.virtualstudios.taskcalender.databinding.LayoutBottomSheetEndBinding;
 import com.virtualstudios.taskcalender.databinding.LayoutBottomSheetStartBinding;
 import com.virtualstudios.taskcalender.utilities.PreferenceManager;
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private Context context;
     private PreferenceManager preferenceManager;
     private List<String> tasks;
-    private BottomSheetDialog bottomSheetDialogStart, bottomSheetDialogEnd;
+    private BottomSheetDialog bottomSheetDialogStart, bottomSheetDialogEnd, bottomSheetNewTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +64,10 @@ public class MainActivity extends AppCompatActivity {
         tasks.add("Task 19");
         tasks.add("Task 20");
 
+        initNewTaskBottomSheet();
         initBottomSheetStart();
         initBottomSheetEnd();
+
         activityMainBinding.bottomAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -82,6 +85,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        activityMainBinding.fabNewTask.setOnClickListener(v -> bottomSheetNewTask.show());
+
     }
 
     private void initBottomSheetStart() {
@@ -135,6 +141,12 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("TAG", "onSlide: "+slideOffset);
             }
         });
+    }
+
+    private void initNewTaskBottomSheet(){
+        bottomSheetNewTask = new BottomSheetDialog(context, R.style.DialogStyle);
+        LayoutBottomSheetAddTaskBinding binding = LayoutBottomSheetAddTaskBinding.inflate(getLayoutInflater());
+        bottomSheetNewTask.setContentView(binding.getRoot());
     }
 
 }

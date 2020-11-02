@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">TaskCalender</string>
+    <string name="create_new_list">Create new list</string>
+    <string name="done">Done</string>
+    <string name="hint_enter_list_title">Enter list title</string>
+    <string name="save">Save</string>
+    <string name="log_out">Log Out</string>
+    <string name="delete_all_completed_tasks">Delete all completed tasks</string>
+    <string name="delete_list">Delete list</string>
+    <string name="rename_list">Rename list</string>
 </resources>
