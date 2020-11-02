@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
@@ -95,6 +96,9 @@ public class MainActivity extends AppCompatActivity {
         binding.textUserEmail.setText("android@google.com");
         binding.recyclerViewTasks.setAdapter(new AdapterTasks(tasks));
         binding.imageClose.setOnClickListener(v -> bottomSheetDialogStart.dismiss());
+        binding.textCreateNewList.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(), CreateNewListActivity.class));
+        });
 
         BottomSheetBehavior bottomSheetBehavior = bottomSheetDialogStart.getBehavior();
         bottomSheetBehavior.setPeekHeight(Resources.getSystem().getDisplayMetrics().heightPixels);

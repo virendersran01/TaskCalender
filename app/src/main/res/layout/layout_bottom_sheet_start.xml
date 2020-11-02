@@ -7,19 +7,19 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="133dp">
 
 
         <ImageView
             android:id="@+id/imageClose"
             android:layout_width="28dp"
             android:layout_height="28dp"
-            android:src="@drawable/ic_close"
-            app:tint="@color/colorBlack"
             android:layout_marginEnd="16dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_close"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/imageUser"
-            android:contentDescription="@string/app_name" />
+            app:tint="@color/colorBlack" />
 
 
         <com.makeramen.roundedimageview.RoundedImageView
