@@ -1,17 +1,14 @@
 package com.virtualstudios.taskcalender.activities;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -34,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private PreferenceManager preferenceManager;
     private List<String> tasks;
     private BottomSheetDialog bottomSheetDialogStart, bottomSheetDialogEnd, bottomSheetNewTask;
+    private final int REQUEST_CODE_CREATE_NEW_LIST = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,23 +66,14 @@ public class MainActivity extends AppCompatActivity {
         initBottomSheetStart();
         initBottomSheetEnd();
 
-        activityMainBinding.bottomAppBar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == R.id.itemOptions){
-                    bottomSheetDialogEnd.show();
-                }
-                return false;
+        activityMainBinding.bottomAppBar.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == R.id.itemOptions){
+                bottomSheetDialogEnd.show();
             }
+            return false;
         });
 
-        activityMainBinding.bottomAppBar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bottomSheetDialogStart.show();
-
-            }
-        });
+        activityMainBinding.bottomAppBar.setNavigationOnClickListener(v -> bottomSheetDialogStart.show());
 
         activityMainBinding.fabNewTask.setOnClickListener(v -> bottomSheetNewTask.show());
 
@@ -103,24 +92,20 @@ public class MainActivity extends AppCompatActivity {
         binding.recyclerViewTasks.setAdapter(new AdapterTasks(tasks));
         binding.imageClose.setOnClickListener(v -> bottomSheetDialogStart.dismiss());
         binding.textCreateNewList.setOnClickListener(v -> {
-            startActivity(new Intent(getApplicationContext(), CreateNewListActivity.class));
+            bottomSheetDialogStart.dismiss();
+            Intent intent = new Intent(getApplicationContext(), CreateNewListActivity.class);
+            startActivityForResult(intent, REQUEST_CODE_CREATE_NEW_LIST);
         });
 
-        BottomSheetBehavior bottomSheetBehavior = bottomSheetDialogStart.getBehavior();
-        bottomSheetBehavior.setPeekHeight(Resources.getSystem().getDisplayMetrics().heightPixels);
-        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        FrameLayout frameLayout = bottomSheetDialogStart.findViewById(
+                com.google.android.material.R.id.design_bottom_sheet
+        );
+        if (frameLayout != null){
+            BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from(frameLayout);
+            bottomSheetBehavior.setPeekHeight(Resources.getSystem().getDisplayMetrics().heightPixels);
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        }
 
-        bottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-            @Override
-            public void onStateChanged(@NonNull View bottomSheet, int newState) {
-                Log.d("TAG", "onStateChanged: "+newState);
-            }
-
-            @Override
-            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-                Log.d("TAG", "onSlide: "+slideOffset);
-            }
-        });
     }
 
     private void initBottomSheetEnd() {
@@ -128,19 +113,6 @@ public class MainActivity extends AppCompatActivity {
         LayoutBottomSheetEndBinding binding = LayoutBottomSheetEndBinding.inflate(getLayoutInflater());
         bottomSheetDialogEnd.setContentView(binding.getRoot());
 
-        BottomSheetBehavior bottomSheetBehavior = bottomSheetDialogEnd.getBehavior();
-
-        bottomSheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-            @Override
-            public void onStateChanged(@NonNull View bottomSheet, int newState) {
-                Log.d("TAG", "onStateChanged: "+newState);
-            }
-
-            @Override
-            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-                Log.d("TAG", "onSlide: "+slideOffset);
-            }
-        });
     }
 
     private void initNewTaskBottomSheet(){
@@ -149,4 +121,19 @@ public class MainActivity extends AppCompatActivity {
         bottomSheetNewTask.setContentView(binding.getRoot());
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_CREATE_NEW_LIST){
+            switch (resultCode){
+                case RESULT_OK:
+                    Toast.makeText(this, "Done", Toast.LENGTH_SHORT).show();
+                    break;
+                case RESULT_CANCELED:
+                    Toast.makeText(this, "Cancel", Toast.LENGTH_SHORT).show();
+                    break;
+            }
+
+        }
+    }
 }
