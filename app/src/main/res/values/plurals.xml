@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="custom_recurrence_day">
+        <item quantity="one">day</item>
+        <item quantity="other">days</item>
+    </plurals>
+    <plurals name="custom_recurrence_month">
+        <item quantity="one">month</item>
+        <item quantity="other">months</item>
+    </plurals>
+    <plurals name="custom_recurrence_month_day">
+        <item quantity="one">Day 1</item>
+        <item quantity="other">Day %1$d</item>
+    </plurals>
+    <plurals name="custom_recurrence_week">
+        <item quantity="one">week</item>
+        <item quantity="other">weeks</item>
+    </plurals>
+    <plurals name="custom_recurrence_year">
+        <item quantity="one">year</item>
+        <item quantity="other">years</item>
+    </plurals>
+    <plurals name="daily_lower">
+        <item quantity="one">daily</item>
+        <item quantity="two">every %d days</item>
+        <item quantity="few">every %d days</item>
+        <item quantity="many">every %d days</item>
+        <item quantity="other">every %d days</item>
+    </plurals>
+    <plurals name="delete_completed_tasks_confirm_message">
+        <item quantity="one">1 completed task will be permanently removed unless it repeats.</item>
+        <item quantity="other">%1$d completed tasks will be permanently removed unless they repeat.</item>
+    </plurals>
+    <plurals name="deleted_and_moved_task_restored">
+        <item quantity="one">%1$d restored in List %2$s.</item>
+        <item quantity="other">%1$d restored in List %2$s.</item>
+    </plurals>
+    <plurals name="endByCount">
+        <item quantity="one">; for one time</item>
+        <item quantity="other">; for %d times</item>
+    </plurals>
+    <plurals name="list_delete_confirm_content">
+        <item quantity="one">Deleting this list will also delete 1 task.</item>
+        <item quantity="other">Deleting this list will also delete %1$d tasks.</item>
+    </plurals>
+    <plurals name="monthly_interval_lower">
+        <item quantity="one">monthly</item>
+        <item quantity="two">every %1$d months</item>
+        <item quantity="few">every %1$d months</item>
+        <item quantity="many">every %1$d months</item>
+        <item quantity="other">every %1$d months</item>
+    </plurals>
+    <plurals name="notification_title_due_tasks">
+        <item quantity="one">1 task</item>
+        <item quantity="other">%1$d tasks</item>
+    </plurals>
+    <plurals name="notification_title_overdue_tasks">
+        <item quantity="one">Task from yesterday</item>
+        <item quantity="other">%1$d tasks from yesterday</item>
+    </plurals>
+    <plurals name="public_notification_text">
+        <item quantity="one">You have a notification</item>
+        <item quantity="other">%1$d new notifications</item>
+    </plurals>
+    <plurals name="reminders_import_completed_successfully">
+        <item quantity="one">1 reminder copied</item>
+        <item quantity="other">%1$d reminders copied</item>
+    </plurals>
+    <plurals name="reminders_import_failed_with_count">
+        <item quantity="one">1 reminder couldn&apos;t be copied</item>
+        <item quantity="other">%1$d reminders couldn&apos;t be copied</item>
+    </plurals>
+    <plurals name="reminders_import_prompt_title">
+        <item quantity="one">Import your 1 reminder</item>
+        <item quantity="other">Import your %1$d reminders</item>
+    </plurals>
+    <plurals name="reminders_import_title">
+        <item quantity="one">Import your 1 reminder</item>
+        <item quantity="other">Import your %1$d reminders</item>
+    </plurals>
+    <plurals name="task_num_dragged_subtasks">
+        <item quantity="one">+1 subtask</item>
+        <item quantity="other">+%1$d subtasks</item>
+    </plurals>
+    <plurals name="task_overdue_days">
+        <item quantity="one">Yesterday</item>
+        <item quantity="other">%1$d days ago</item>
+    </plurals>
+    <plurals name="task_overdue_weeks">
+        <item quantity="one">1 week ago</item>
+        <item quantity="other">%1$d weeks ago</item>
+    </plurals>
+    <plurals name="weekly_lower">
+        <item quantity="one">weekly on %2$s</item>
+        <item quantity="two">every %1$d weeks on %2$s</item>
+        <item quantity="few">every %1$d weeks on %2$s</item>
+        <item quantity="many">every %1$d weeks on %2$s</item>
+        <item quantity="other">every %1$d weeks on %2$s</item>
+    </plurals>
+    <plurals name="yearly_interval_lower">
+        <item quantity="one">yearly</item>
+        <item quantity="two">every %1$d years</item>
+        <item quantity="few">every %1$d years</item>
+        <item quantity="many">every %1$d years</item>
+        <item quantity="other">every %1$d years</item>
+    </plurals>
+</resources>
