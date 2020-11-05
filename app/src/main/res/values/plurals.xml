@@ -66,10 +66,10 @@
         <item quantity="one">1 reminder copied</item>
         <item quantity="other">%1$d reminders copied</item>
     </plurals>
-    <plurals name="reminders_import_failed_with_count">
-        <item quantity="one">1 reminder couldn&apos;t be copied</item>
-        <item quantity="other">%1$d reminders couldn&apos;t be copied</item>
-    </plurals>
+<!--    <plurals name="reminders_import_failed_with_count">-->
+<!--        <item quantity="one">1 reminder couldn't be copied</item>-->
+<!--        <item quantity="other">%1$d reminders couldn't be copied</item>-->
+<!--    </plurals>-->
     <plurals name="reminders_import_prompt_title">
         <item quantity="one">Import your 1 reminder</item>
         <item quantity="other">Import your %1$d reminders</item>

@@ -12,6 +12,9 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.virtualstudios.taskcalender.R;
 
+import java.security.SecureRandom;
+import java.util.Random;
+
 public class Util {
 
     public static float dpToPixel(int i, Resources resources) {
@@ -43,5 +46,22 @@ public class Util {
 
     public static float pxFromDp(final Context context, final float dp) {
         return dp * context.getResources().getDisplayMetrics().density;
+    }
+
+    static final private String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    static final private Random rng = new SecureRandom();
+
+    private static char randomChar(){
+        return ALPHABET.charAt(rng.nextInt(ALPHABET.length()));
+    }
+
+    public static String randomUUID(int length){
+        StringBuilder sb = new StringBuilder();
+        while(length > 0){
+            length--;
+            sb.append(randomChar());
+        }
+        return sb.toString();
+
     }
 }
