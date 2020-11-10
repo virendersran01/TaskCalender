@@ -39,20 +39,131 @@
         app:layout_constraintTop_toTopOf="parent"
         app:tint="#575656" />
 
-    <TextView
-        android:id="@+id/textTaskList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_regular"
-        android:paddingTop="12dp"
-        android:paddingBottom="12dp"
-        android:text="My Tasks"
-        android:textColor="#3F51B5"
-        android:textSize="18sp"
-        android:drawablePadding="16dp"
-        app:layout_constraintStart_toStartOf="@id/imageBack"
-        app:layout_constraintTop_toBottomOf="@id/imageBack"
-        app:drawableEndCompat="@drawable/ic_arrow_drop_down"
-        app:drawableTint="#3F51B5"/>
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageBack">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textTaskList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:drawablePadding="16dp"
+                android:fontFamily="@font/roboto_regular"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:text="My Tasks"
+                android:textColor="#3F51B5"
+                android:textSize="18sp"
+                app:drawableEndCompat="@drawable/ic_arrow_drop_down"
+                app:drawableTint="#3F51B5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editTextTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@null"
+                android:fontFamily="@font/roboto_regular"
+                android:hint="Enter title"
+                android:textColorHint="#575656"
+                android:textColor="@color/colorBlack"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:maxLines="5"
+                android:textSize="20sp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textTaskList" />
+
+            <ImageView
+                android:id="@+id/imageAddDetails"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="24dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_notes"
+                app:tint="#575656"
+                app:layout_constraintStart_toStartOf="@id/textTaskList"
+                app:layout_constraintTop_toBottomOf="@id/editTextTitle"/>
+
+            <EditText
+                android:id="@+id/editTextAddDetails"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@null"
+                android:fontFamily="@font/roboto_regular"
+                android:hint="Add details"
+                android:textColorHint="#575656"
+                android:textColor="@color/colorBlack"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:maxLines="5"
+                android:minLines="3"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@id/imageAddDetails"
+                app:layout_constraintTop_toTopOf="@id/imageAddDetails"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <ImageView
+                android:id="@+id/imageAddDate"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="24dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_event_available"
+                app:layout_constraintStart_toStartOf="@id/textTaskList"
+                app:layout_constraintTop_toBottomOf="@id/editTextAddDetails"
+                app:tint="#575656" />
+
+            <EditText
+                android:id="@+id/editTextAddDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@null"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Add date/time"
+                android:textColorHint="#575656"
+                android:importantForAutofill="no"
+                android:inputType="date"
+                android:maxLines="1"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@id/imageAddDate"
+                app:layout_constraintTop_toTopOf="@id/imageAddDate"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageAddSubTask"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="24dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_event_available"
+                app:layout_constraintStart_toStartOf="@id/textTaskList"
+                app:layout_constraintTop_toBottomOf="@id/editTextAddDetails"
+                app:tint="#575656" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -49,7 +49,7 @@
         app:tint="#3F51B5" />
 
     <ImageView
-        android:id="@+id/imageAddData"
+        android:id="@+id/imageAddDate"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginBottom="16dp"
