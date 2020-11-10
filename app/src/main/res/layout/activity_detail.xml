@@ -6,4 +6,53 @@
     android:layout_height="match_parent"
     tools:context=".activities.DetailActivity">
 
+    <ImageView
+        android:id="@+id/imageBack"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="#575656" />
+
+    <ImageView
+        android:id="@+id/imageDelete"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="#575656" />
+
+    <ImageView
+        android:id="@+id/imageDone"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_done"
+        app:layout_constraintEnd_toStartOf="@id/imageDelete"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="#575656" />
+
+    <TextView
+        android:id="@+id/textTaskList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_regular"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:text="My Tasks"
+        android:textColor="#3F51B5"
+        android:textSize="18sp"
+        android:drawablePadding="16dp"
+        app:layout_constraintStart_toStartOf="@id/imageBack"
+        app:layout_constraintTop_toBottomOf="@id/imageBack"
+        app:drawableEndCompat="@drawable/ic_arrow_drop_down"
+        app:drawableTint="#3F51B5"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
