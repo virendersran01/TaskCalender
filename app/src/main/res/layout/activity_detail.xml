@@ -132,8 +132,8 @@
                 app:layout_constraintTop_toBottomOf="@id/editTextAddDetails"
                 app:tint="#575656" />
 
-            <EditText
-                android:id="@+id/editTextAddDate"
+            <TextView
+                android:id="@+id/textAddDate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -141,9 +141,7 @@
                 android:background="@null"
                 android:fontFamily="@font/roboto_regular"
                 android:text="Add date/time"
-                android:textColorHint="#575656"
-                android:importantForAutofill="no"
-                android:inputType="date"
+                android:textColor="#575656"
                 android:maxLines="1"
                 android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@id/imageAddDate"
@@ -156,10 +154,26 @@
                 android:layout_height="32dp"
                 android:layout_marginTop="24dp"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_event_available"
+                android:src="@drawable/ic_subtask"
                 app:layout_constraintStart_toStartOf="@id/textTaskList"
-                app:layout_constraintTop_toBottomOf="@id/editTextAddDetails"
+                app:layout_constraintTop_toBottomOf="@id/textAddDate"
                 app:tint="#575656" />
+
+            <TextView
+                android:id="@+id/textAddSubtasks"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@null"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Add subtasks"
+                android:textColor="#575656"
+                android:maxLines="1"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@id/imageAddSubTask"
+                app:layout_constraintTop_toTopOf="@id/imageAddSubTask"
+                app:layout_constraintEnd_toEndOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

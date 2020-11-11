@@ -1,6 +1,7 @@
 package com.virtualstudios.taskcalender.activities;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -8,11 +9,13 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.squareup.picasso.Picasso;
 import com.virtualstudios.taskcalender.R;
 import com.virtualstudios.taskcalender.adapters.AdapterTasks;
@@ -20,6 +23,7 @@ import com.virtualstudios.taskcalender.databinding.ActivityMainBinding;
 import com.virtualstudios.taskcalender.databinding.LayoutBottomSheetAddTaskBinding;
 import com.virtualstudios.taskcalender.databinding.LayoutBottomSheetEndBinding;
 import com.virtualstudios.taskcalender.databinding.LayoutBottomSheetStartBinding;
+import com.virtualstudios.taskcalender.databinding.LayoutCalenderViewBinding;
 import com.virtualstudios.taskcalender.utilities.PreferenceManager;
 import com.virtualstudios.taskcalender.utilities.Util;
 
@@ -34,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private List<String> tasks;
     private BottomSheetDialog bottomSheetDialogStart, bottomSheetDialogEnd, bottomSheetNewTask;
     private final int REQUEST_CODE_CREATE_NEW_LIST = 0;
+    private AlertDialog dialogCalenderView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         initNewTaskBottomSheet();
         initBottomSheetStart();
         initBottomSheetEnd();
+        initCalenderView();
 
         activityMainBinding.bottomAppBar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.itemOptions){
@@ -121,6 +127,13 @@ public class MainActivity extends AppCompatActivity {
         bottomSheetNewTask = new BottomSheetDialog(context, R.style.DialogStyle);
         LayoutBottomSheetAddTaskBinding binding = LayoutBottomSheetAddTaskBinding.inflate(getLayoutInflater());
         bottomSheetNewTask.setContentView(binding.getRoot());
+
+        binding.imageAddDate.setOnClickListener(v ->
+                {
+                    Util.hideKeyboardFrom(MainActivity.this, v);
+                    bottomSheetNewTask.dismiss();
+                    dialogCalenderView.show();
+                });
     }
 
     @Override
@@ -136,6 +149,20 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
 
+        }
+    }
+
+    private void initCalenderView(){
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(MainActivity.this, R.style.AlertDialogCalender);
+        LayoutCalenderViewBinding binding = LayoutCalenderViewBinding.inflate(getLayoutInflater());
+        builder.setView(binding.getRoot());
+
+        dialogCalenderView = builder.create();
+
+        if (dialogCalenderView != null) {
+            int width = ViewGroup.LayoutParams.MATCH_PARENT;
+            int height = ViewGroup.LayoutParams.MATCH_PARENT;
+            dialogCalenderView.getWindow().setLayout(width, height);
         }
     }
 }

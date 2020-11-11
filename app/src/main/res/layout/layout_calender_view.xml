@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageRepeat"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="@+id/imageClock"
+        app:layout_constraintTop_toBottomOf="@+id/textSetTime"
+        app:srcCompat="@drawable/ic_repeat" />
+
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageClock"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView"
+        app:srcCompat="@drawable/ic_clock" />
+
+    <TextView
+        android:id="@+id/textSetTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="24dp"
+        android:text="Set time"
+        app:layout_constraintBottom_toBottomOf="@+id/imageClock"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageClock"
+        app:layout_constraintTop_toTopOf="@+id/imageClock" />
+
+    <TextView
+        android:id="@+id/textRepeat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Repeat"
+        app:layout_constraintBottom_toBottomOf="@+id/imageRepeat"
+        app:layout_constraintEnd_toEndOf="@+id/textSetTime"
+        app:layout_constraintStart_toEndOf="@+id/imageRepeat"
+        app:layout_constraintTop_toTopOf="@+id/imageRepeat" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonDone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
+        android:text="Done"
+        android:textColor="#3F51B5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textRepeat"
+        app:layout_constraintTop_toBottomOf="@+id/textRepeat" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:text="Cancel"
+        android:textColor="#575656"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonDone"
+        app:layout_constraintEnd_toStartOf="@+id/buttonDone"
+        app:layout_constraintTop_toTopOf="@+id/buttonDone" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
